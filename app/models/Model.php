@@ -32,7 +32,7 @@ class Model {
             foreach ($data as $key => $value) {
                 if (in_array($key, static::$fields)) {
                     $keys[] = "{$key}";
-                    $values[] = "'{$value}'";
+                    $values[] = static::serializeValue($value);
                 }
             }
             $sql .= "(" . implode(', ', $keys) . ") ";
@@ -50,12 +50,12 @@ class Model {
     {
         if ($data && $this->id) {
             $sql = "UPDATE " . static::$table . " SET ";
+            
             $updates = [];
-            foreach ($data as $key => $value) {
-                if (in_array($key, static::$fields)) {
-                    $updates[] = "{$key} = '{$value}'";
-                }
-            }
+            foreach ($data as $key => $value) 
+                if (in_array($key, static::$fields))
+                    $updates[] = "{$key} = " . static::serializeValue($value);
+
             $sql .= implode(', ', $updates);
             $sql .= " WHERE id = {$this->id}";
 
@@ -67,6 +67,14 @@ class Model {
             } else
                 return false;
         }
+    }
+
+    private static function serializeValue($value)
+    {
+        if (is_bool($value))
+            return $value ? 1 : 0;
+        else
+            return "'{$value}'";
     }
 
     public function delete()

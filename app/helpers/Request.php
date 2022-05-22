@@ -21,6 +21,9 @@ class Request {
 
             if ($trim)
                 $value = trim($value);
+
+            if ($value == "")
+                $value = null;
         }
 
         return $value;
