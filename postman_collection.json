@@ -1,0 +1,382 @@
+{
+	"info": {
+		"_postman_id": "f065bc59-97b2-4e99-ad06-8e400574bcef",
+		"name": "link-shortener",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5899524"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "username",
+									"value": "sadrix",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{app_url}}/auth/login",
+							"host": [
+								"{{app_url}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "صدرا",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "sadra3",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{app_url}}/auth/register",
+							"host": [
+								"{{app_url}}"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "logout",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{app_url}}/auth/logout",
+							"host": [
+								"{{app_url}}"
+							],
+							"path": [
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "profile",
+			"item": [
+				{
+					"name": "show",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{app_url}}/profile",
+							"host": [
+								"{{app_url}}"
+							],
+							"path": [
+								"profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edit",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "sadra2",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "sadrix22",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{app_url}}/profile",
+							"host": [
+								"{{app_url}}"
+							],
+							"path": [
+								"profile"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "links",
+			"item": [
+				{
+					"name": "links",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{app_url}}/links",
+							"host": [
+								"{{app_url}}"
+							],
+							"path": [
+								"links"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "new link",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "redirect_url",
+									"value": "https://sadrix.com",
+									"type": "text"
+								},
+								{
+									"key": "title",
+									"value": "test",
+									"type": "text"
+								},
+								{
+									"key": "utl_source",
+									"value": "website",
+									"type": "text"
+								},
+								{
+									"key": "utm_medium",
+									"value": "banner test 2",
+									"type": "text"
+								},
+								{
+									"key": "utm_campain",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{app_url}}/links",
+							"host": [
+								"{{app_url}}"
+							],
+							"path": [
+								"links"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update link",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "redirect_url",
+									"value": "https://sadrix.com",
+									"type": "text"
+								},
+								{
+									"key": "title",
+									"value": "test",
+									"type": "text"
+								},
+								{
+									"key": "utl_source",
+									"value": "website",
+									"type": "text"
+								},
+								{
+									"key": "utm_medium",
+									"value": "banner test 2",
+									"type": "text"
+								},
+								{
+									"key": "utm_campain",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{app_url}}/links/1",
+							"host": [
+								"{{app_url}}"
+							],
+							"path": [
+								"links",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete link",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{app_url}}/links/1",
+							"host": [
+								"{{app_url}}"
+							],
+							"path": [
+								"links",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "link data",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{app_url}}/links/1",
+							"host": [
+								"{{app_url}}"
+							],
+							"path": [
+								"links",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "home",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{app_url}}",
+					"host": [
+						"{{app_url}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "link",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://link-shortener.local/S7xAdw28",
+					"protocol": "http",
+					"host": [
+						"link-shortener",
+						"local"
+					],
+					"path": [
+						"S7xAdw28"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "app_url",
+			"value": "http://link-shortener.local",
+			"type": "string"
+		}
+	]
+}

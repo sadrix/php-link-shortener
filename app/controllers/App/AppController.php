@@ -10,14 +10,7 @@ use Models\User;
 class AppController extends Controller{
     
     public static function home() {
-        $auth_user = Auth::check() ? Auth::user() : null;
-        $user = User::find(1);
-        $users = User::all();
-
         return response(200, 'Welcome to link shortener app!', [
-            'auth_user' => $auth_user ? $auth_user->toArray() : null,
-            'user' => $user->toArray(),
-            'users' => $users,
             'useful links' => [
                 'auth' => [
                     'login' => [
@@ -29,33 +22,37 @@ class AppController extends Controller{
                         'method' => 'POST|GET'
                     ],
                 ],
-                'user links' => [
-                    'url' => url('links'),
-                    'method' => 'GET'
-                ],
-                'add new link' => [
-                    'url' => url('link'),
-                    'method' => 'PUT'
-                ],
-                'link info' => [
-                    'url' => url('link/{id}'),
-                    'method' => 'GET'
-                ],
-                'update link' => [
-                    'url' => url('link/{id}'),
-                    'method' => 'POST'
-                ],
-                'delete link' => [
-                    'url' => url('link/{id}'),
-                    'method' => 'DELETE'
+                'links' => [
+                    'user links' => [
+                        'url' => url('links'),
+                        'method' => 'GET'
+                    ],
+                    'new' => [
+                        'url' => url('links'),
+                        'method' => 'POST'
+                    ],
+                    'show' => [
+                        'url' => url('link/{id}'),
+                        'method' => 'GET'
+                    ],
+                    'update' => [
+                        'url' => url('link/{id}'),
+                        'method' => 'POST'
+                    ],
+                    'delete' => [
+                        'url' => url('link/{id}'),
+                        'method' => 'DELETE'
+                    ],
                 ],
                 'profile' => [
-                    'url' => url('profile'),
-                    'method' => 'GET'
-                ],
-                'edit profile' => [
-                    'url' => url('profile'),
-                    'method' => 'Post'
+                    'show' => [
+                        'url' => url('profile'),
+                        'method' => 'GET'
+                    ],
+                    'edit' => [
+                        'url' => url('profile'),
+                        'method' => 'POST'
+                    ],
                 ],
             ]
         ]);
