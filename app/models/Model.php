@@ -130,5 +130,4 @@ class Model {
             }
         return $array;
     }
-
 }

@@ -25,7 +25,7 @@ function config($name, $default = null) {
     if ($parts && is_array($parts) && count($parts) > 1) {
         $key = array_pop($parts);
         $path = implode('/', $parts);
-        $file_path = '../config/' . $path . '.json';
+        $file_path = root_path('./config/' . $path . '.json');
         try {
             $json = file_get_contents($file_path);
             $configs = (object) json_decode($json, true);
@@ -41,18 +41,22 @@ function config($name, $default = null) {
  * create full url based on app url
  */
 function url($path, array $params = []) {
-    $url = config('app/url') . $path;
+    return config('app/url') . $path . query_param($params);
+}
+
+function query_param($params) {
+    $query = '';
 
     if ($params) {
         $queries = [];
-        
+
         foreach ($params as $key => $value)
             $queries[] = $key . "=" . urlencode($value);
-        
-        $url .= '?' . implode('&', $queries);
+
+        $query .= '?' . implode('&', $queries);
     }
 
-    return $url;
+    return $query;
 }
 
 // global request param
@@ -91,4 +95,8 @@ function randomString($length = 16) {
         $string .= $chars[rand(0, strlen($chars) - 1)];
     
     return $string;
+}
+
+function root_path($path) {
+    return __DIR__ . '/../../' . $path;
 }

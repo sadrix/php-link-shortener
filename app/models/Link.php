@@ -8,9 +8,9 @@ class Link extends Model {
 
     public static $fields = ['id', 'user_id', 'redirect_url', 'code', 'title', 'utm_source', 'utm_medium', 'utm_campain'];
 
-    public static $appends = ['short_link'];
+    public static $appends = ['short_link', 'full_redirect_url'];
 
-    public $id, $user_id, $redirect_url, $code, $title, $utm_source, $utm_medium, $utm_campain, $short_link;
+    public $id, $user_id, $redirect_url, $code, $title, $utm_source, $utm_medium, $utm_campain, $short_link, $full_redirect_url;
 
     public static function findByCode($code) {
         $collection = static::findBySql("SELECT * FROM " . static::$table . " WHERE code='{$code}' LIMIT 1");
@@ -18,6 +18,10 @@ class Link extends Model {
     }
 
     public function getShortLinkAttribute() {
+        return url($this->code);
+    }
+
+    public function getFullRedirectUrlAttribute() {
         $params = [];
 
         if ($this->utm_source)
@@ -29,6 +33,8 @@ class Link extends Model {
         if ($this->utm_campain)
             $params['utm_campain'] = $this->utm_campain;
 
-        return url($this->code, $params);
+        $url = $this->redirect_url . query_param($params);
+
+        return $url ;
     }
 }

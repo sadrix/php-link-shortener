@@ -15,7 +15,8 @@
             "Database\\": "database",
             "Controllers\\": "app/controllers",
             "Models\\": "app/models",
-            "Helpers\\": "app/helpers"
+            "Helpers\\": "app/helpers",
+            "Jobs\\": "app/jobs"
         },
         "files": [
             "app/functions/functions.php"

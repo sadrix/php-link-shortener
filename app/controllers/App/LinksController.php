@@ -4,6 +4,7 @@ namespace Controllers\App;
 
 use Controllers\Controller;
 use Helpers\Auth;
+use Jobs\UpdateLinksCache;
 use Models\Link;
 use Rakit\Validation\Validator;
 
@@ -24,13 +25,12 @@ class LinksController extends Controller {
         if (!Auth::check())
             return response(401, 'You need to authorize first.');
 
-        $user = Auth::user();
         $link = Link::find($id);
 
         if (!$link)
             return response(404, 'Link not found.');
         
-        if ($user->id != $link->user_id)
+        if ($link->user_id != Auth::id())
             return response(403, 'You didn\'t have enough permissions to access this link.');
             
         return response(200, 'User link data.', [
@@ -73,6 +73,8 @@ class LinksController extends Controller {
             'utm_campain'  => $utm_campain,
             'user_id'      => Auth::id()
         ]);
+
+        UpdateLinksCache::dispatch();
 
         return response(201, 'New Link created successfully.', [
             'link' => $link->toArray()
@@ -119,6 +121,8 @@ class LinksController extends Controller {
             'utm_campain'  => $utm_campain,
         ]);
 
+        UpdateLinksCache::dispatch();
+
         return response(201, 'Link updated successfully.', [
             'link' => $link->toArray()
         ]);
@@ -136,6 +140,8 @@ class LinksController extends Controller {
             return response(404, 'You didn\'t have enough permissions to delete this link.');
 
         $link->delete();
+
+        UpdateLinksCache::dispatch();
 
         return response(200, 'Link deleted successfully.');
     }
